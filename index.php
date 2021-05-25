@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: GET, POST");
 
 $resulting_json = json_encode(json_decode(file_get_contents('php://input'), true), JSON_PRETTY_PRINT);
 
