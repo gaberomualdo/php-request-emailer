@@ -57,5 +57,4 @@ try {
   echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-
 ?>
