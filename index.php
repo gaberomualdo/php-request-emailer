@@ -1,5 +1,6 @@
 <?php
 
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -9,14 +10,15 @@ require './PHPMailer/src/SMTP.php';
 
 include_once "config.php";
 
+header('Content-Type: application/json');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT");
+header("Access-Control-Allow-Headers: content-type,append,delete,entries,foreach,get,has,keys,set,values,Authorization");
+
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
   http_response_code(405);
   exit;
 }
-
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: *");
-header("Access-Control-Allow-Methods: GET, POST");
 
 $resulting_json = json_encode(json_decode(file_get_contents('php://input'), true), JSON_PRETTY_PRINT);
 
