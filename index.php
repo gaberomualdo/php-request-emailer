@@ -10,9 +10,7 @@ require './PHPMailer/src/SMTP.php';
 include_once "config.php";
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-  exit;
-}
-if (null === file_get_contents('php://input')) {
+  http_response_code(405);
   exit;
 }
 
@@ -55,6 +53,7 @@ try {
   $mail->send();
   echo $resulting_json;
 } catch (Exception $e) {
+  http_response_code(500);
   echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
